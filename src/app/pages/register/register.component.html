@@ -1,0 +1,101 @@
+<div class="flex flex-col items-center justify-center h-screen bg-gray-50">
+    <img src="/assets/logos/logo-orange.svg" alt="Vigilante Logo" class="w-20 mb-4" />
+    <h1 class="text-2xl font-bold mb-2">Regístrate</h1>
+    <p class="text-gray-500 mb-6">Crea una nueva cuenta.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()" class="flex flex-col gap-4 w-80">
+
+        <div *ngIf="alerts" class="rounded-md bg-red-50 p-4">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-red-800">{{ alerts.message }}</p>
+                </div>
+                <div class="ml-auto pl-3">
+                    <div class="-mx-1.5 -my-1.5">
+                        <button type="button" (click)="alerts = null"
+                            class="inline-flex rounded-md bg-red-50 p-1.5 text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50">
+                            <span class="sr-only">Dismiss</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rounded-md bg-green-50 p-4" *ngIf="registerStatus">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-green-800">El registro se ha realizado correctamente.</p>
+                </div>
+            </div>
+        </div>          
+
+        <div class="w-full flex flex-col">
+            <input type="text" formControlName="name" placeholder="Nombre*" class="p-2 border rounded-md" />
+            <div *ngIf="f['name'].touched && f['name'].invalid" class="text-red-500 text-sm">
+                <small *ngIf="f['name'].errors?.['required']">El nombre es obligatorio.</small>
+            </div>
+        </div>
+
+        <div class="w-full flex flex-col">
+            <input type="email" formControlName="email" placeholder="Correo*" class="p-2 border rounded-md" />
+            <div *ngIf="f['email'].touched && f['email'].invalid" class="text-red-500 text-sm">
+                <small *ngIf="f['email'].errors?.['required']">El correo es obligatorio.</small>
+                <small *ngIf="f['email'].errors?.['email']">El correo no es válido.</small>
+            </div>
+        </div>
+
+        <div class="w-full flex flex-col">
+            <input type="text" formControlName="dni" placeholder="Número de DNI*" class="p-2 border rounded-md" />
+            <div *ngIf="f['dni'].touched && f['dni'].invalid" class="text-red-500 text-sm">
+                <small *ngIf="f['dni'].errors?.['required']">El DNI es obligatorio.</small>
+                <small *ngIf="f['dni'].errors?.['pattern']">El DNI debe ser numerico.</small>
+            </div>
+        </div>
+
+        <div class="w-full flex flex-col">
+            <input type="password" formControlName="password" placeholder="Contraseña*" class="p-2 border rounded-md" />
+            <div *ngIf="f['password'].touched && f['password'].invalid" class="text-red-500 text-sm">
+                <small *ngIf="f['password'].errors?.['required']">La contraseña es obligatoria.</small>
+                <small *ngIf="f['password'].errors?.['minlength']">
+                    La contraseña debe tener al menos 6 caracteres.
+                </small>
+            </div>
+        </div>
+
+        <button type="submit"
+            class="disabled:opacity-75 w-full py-2 bg-orange-500 text-white rounded-md enabled:hover:bg-orange-600"
+            [disabled]="registerForm.invalid">
+            Crear Cuenta
+        </button>
+    </form>
+
+    <button class="flex items-center justify-center gap-2 mt-6 py-2 px-4 border rounded-md">
+        <img src="/assets/logos/google-icon.svg" alt="Google Logo" class="w-5 h-5" />
+        Continuar con Google
+    </button>
+
+    <p class="mt-6 text-sm">
+        ¿Ya tienes una cuenta?
+        <a routerLink="/login" class="text-orange-500">
+            Iniciar Sesión
+        </a>
+    </p>
+</div>

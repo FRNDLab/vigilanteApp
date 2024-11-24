@@ -1,0 +1,10 @@
+<div class="flex flex-col items-center justify-center h-screen transition-colors duration-1000"
+    [ngClass]="step === 0 ? 'bg-orange-500' : 'bg-white'">
+    <div class="flex flex-col items-center">
+        <img [src]="logoSrc" alt="Vigilante Logo" class="w-32 h-32 mb-4 transition-opacity duration-1000" />
+        <h1 class="logo-text text-2xl font-bold">VIGILANTE</h1>
+    </div>
+    <div *ngIf="step === 2"
+        class="fixed inset-x-0 bottom-44 mx-auto w-10 h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin">
+    </div>
+</div>

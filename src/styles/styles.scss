@@ -1,0 +1,134 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --font-geist-sans: 'GeistSans';
+    --font-geist-mono: 'GeistMono';
+}
+
+/* Eliminar cualquier margen o padding predeterminado del body y html */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Evitar el desplazamiento */
+    box-sizing: border-box;
+}
+
+/* Definir la fuente personalizada */
+@font-face {
+    font-family: 'ObviouslyWideBold';
+    src: url('/assets/fonts/ObviouslyDemo-WideBold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Estilo opcional para el texto del logo */
+.logo-text {
+    font-family: 'ObviouslyWideBold', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Contenedor de la pantalla de carga */
+.splash-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    /* Habilitar posicionamiento para el spinner */
+    transition: background-color 1s ease;
+    box-sizing: border-box;
+}
+
+/* Estilos de fondo */
+.orange-bg {
+    background-color: #d97706;
+    /* Color naranja */
+    color: #000000;
+}
+
+.white-bg {
+    background-color: #ffffff;
+    /* Color blanco */
+    color: #000000;
+}
+
+/* Contenedor del logo */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 1s ease;
+}
+
+/* Estilo del logo */
+.logo {
+    width: 125px;
+    /* Tamaño aumentado */
+    height: 125px;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+/* Estilo del texto */
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Animación del spinner */
+.spinner {
+    position: absolute;
+    bottom: 15%;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    /* Centramos el spinner */
+    width: 40px;
+    height: 40px;
+    border: 4px solid #d97706;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animación del spinner */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.welcome-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* Ocupa toda la altura de la pantalla */
+    text-align: center;
+    background-color: #ffffff;
+    /* Fondo blanco */
+    color: #000000;
+    /* Texto negro */
+}
+
+.welcome-container h1 {
+    font-family: 'ObviouslyWideBold', sans-serif;
+    /* Aplicar la fuente personalizada */
+    font-size: 32px;
+    font-weight: bold;
+}

@@ -1,0 +1,13 @@
+<div *ngIf="currentUser$ | async as user; else noUser" class="flex flex-col items-center justify-center h-screen">
+    <h1>Bienvenido, {{ user.name }}!</h1>
+    <p>Tu correo es: {{ user.email }}</p>
+    <ul>
+        <li>DNI: {{ user.dni }}</li>
+    </ul>    
+
+    <a (click)="logout()" class="mt-7 cursor-pointer border border-orange-500 text-orange-500 px-4 py-2">Cerrar Sesi&oacute;n</a>
+</div>
+
+<ng-template #noUser class="flex flex-col items-center justify-center h-screen">
+    <p>No hay usuario autenticado.</p>
+</ng-template>
